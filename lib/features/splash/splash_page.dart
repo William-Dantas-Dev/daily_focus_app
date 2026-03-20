@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/i18n/l10n_extension.dart';
 import './widgets/splash_animation_wrapper.dart';
 import './widgets/splash_background.dart';
 import './widgets/splash_loader.dart';
@@ -25,16 +26,20 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SplashBackground(
         child: Center(
           child: SplashAnimationWrapper(
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SplashLogo(iconURL: "assets/icon/icon.png"),
                 SizedBox(height: 24),
-                SplashTitle(title: "Daily Focus", subtitle: "Clareza. Consistência. Resultado.",),
+                SplashTitle(
+                  title: context.intl.splashTitle,
+                  subtitle: context.intl.splashSubtitle,
+                ),
                 SizedBox(height: 40),
                 SplashLoader(),
               ],
