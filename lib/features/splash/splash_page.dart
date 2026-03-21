@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/i18n/l10n_extension.dart';
+import '../../core/widgets/app_background.dart';
 import './widgets/splash_animation_wrapper.dart';
-import './widgets/splash_background.dart';
 import './widgets/splash_loader.dart';
 import './widgets/splash_logo.dart';
 import './widgets/splash_title.dart';
@@ -21,6 +21,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
       // TODO NAVIGATE -> HOME PAGE
+      Navigator.pushNamed(context, "/initial-settings");
     });
   }
 
@@ -28,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: SplashBackground(
+      body: AppBackground(
         child: Center(
           child: SplashAnimationWrapper(
             child: Column(

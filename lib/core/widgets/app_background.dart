@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 
-class SplashBackground extends StatelessWidget {
+class AppBackground extends StatelessWidget {
   final Widget child;
+  final EdgeInsetsGeometry? padding;
+  final bool useSafeArea;
 
-  const SplashBackground({
+  const AppBackground({
     super.key,
     required this.child,
+    this.padding,
+    this.useSafeArea = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    Widget content = padding != null
+        ? Padding(
+            padding: padding!,
+            child: child,
+          )
+        : child;
+
+    if (useSafeArea) {
+      content = SafeArea(child: content);
+    }
+
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -22,7 +39,7 @@ class SplashBackground extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: child,
+      child: content,
     );
   }
 }
